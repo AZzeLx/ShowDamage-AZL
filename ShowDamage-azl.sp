@@ -31,7 +31,7 @@ public Action Event_PlayerHurt(Handle event, const char[] name, bool dontBroadca
     	if (!GameRules_GetProp("m_bWarmupPeriod") == 1)
     	{   
 		int iAttacker = GetClientOfUserId(GetEventInt(event, "attacker"));
-		int iVictim = GetClientOfUserId(GetEventInt(event, "userid"));
+		int iVictim   = GetClientOfUserId(GetEventInt(event, "userid"));
 	
 		if(iVictim == iAttacker || iAttacker < 1 || iAttacker > MaxClients || !IsClientInGame(iAttacker) || IsFakeClient(iAttacker))
 			return;
@@ -80,10 +80,10 @@ public Action Event_PlayerHurt(Handle event, const char[] name, bool dontBroadca
 
 void AlertText(Event event, int client, int duration, const char[] msg, any ...)
 {
-    static char buff[512];
-    VFormat(buff, sizeof(buff), msg, 5);
-    event.SetString("loc_token", buff);
-    event.SetInt("duration", duration);
-    event.SetInt("userid", -1);
-    event.FireToClient(client);
+    	static char buff[512];
+   	VFormat(buff, sizeof(buff), msg, 5);
+   	event.SetString("loc_token", buff);
+   	event.SetInt("duration", duration);
+    	event.SetInt("userid", -1);
+    	event.FireToClient(client);
 }
